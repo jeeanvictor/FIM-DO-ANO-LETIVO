@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#133d36" />
+  <title>Operação Férias — Santos | Educação Infantil 2026</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap');
+    :root {
+      --green:#103a34; --green2:#0b302b; --chalk:#f4f5e7; --muted:#b6d5c8;
+      --yellow:#ffdf77; --pink:#ffc4ad; --blue:#a8dbe8; --line:rgba(244,245,231,.18);
+    }
+    * { box-sizing:border-box; }
+    html { min-height:100%; }
+    body { margin:0; min-height:100vh; color:var(--chalk); font-family:'DM Sans',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:#092b27; overflow-x:hidden; }
+    button, input { font:inherit; }
+    .frame { min-height:100vh; padding:clamp(12px,2vw,24px); background:linear-gradient(115deg,#214c40 0%,#102d2b 70%); }
+    .board { min-height:calc(100vh - clamp(24px,4vw,48px)); position:relative; overflow:hidden; isolation:isolate; border:clamp(8px,1.1vw,15px) solid #ba8652; border-radius:18px; box-shadow:inset 0 0 0 2px rgba(255,255,255,.12),inset 0 0 75px rgba(0,0,0,.15),0 20px 50px rgba(0,0,0,.26); background:radial-gradient(ellipse at 56% 35%,rgba(72,126,103,.4),transparent 65%),radial-gradient(circle at 2% 90%,rgba(11,47,43,.7),transparent 45%),#103a34; }
+    .board::before {content:'';position:absolute;inset:0;pointer-events:none;opacity:.13;z-index:-1;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 190 190' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.55' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.38'/%3E%3C/svg%3E");}
+    .inner { max-width:1440px; margin:0 auto; min-height:calc(100vh - clamp(44px,6vw,78px)); display:flex;flex-direction:column; position:relative; z-index:1; padding:clamp(20px,3.5vw,50px) clamp(16px,5vw,72px) clamp(22px,3vw,38px); }
+    .top {display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;}
+    .logo {display:flex;gap:12px;align-items:center;font-size:clamp(13px,1.3vw,17px);font-weight:900;letter-spacing:.16em;text-transform:uppercase;}
+    .logo-symbol {width:46px;height:46px;flex:none;border:2px dashed var(--yellow);border-radius:15px;display:grid;place-items:center;font-size:25px;transform:rotate(-7deg);background:rgba(255,223,119,.06);}
+    .tag {border:1px solid var(--line);border-radius:999px;padding:11px 16px;color:var(--muted);font-size:12px;font-weight:800;letter-spacing:.075em;text-transform:uppercase;background:rgba(8,39,34,.28)}
+    .hero { margin:auto 0; text-align:center; padding:clamp(37px,6vh,90px) 0 clamp(28px,5vh,64px); position:relative; }
+    .eyebrow {color:var(--yellow);text-transform:uppercase;letter-spacing:.27em;font-size:clamp(11px,1.15vw,16px);font-weight:900;display:flex;align-items:center;justify-content:center;gap:12px;}
+    .eyebrow::before,.eyebrow::after{content:'';width:clamp(17px,4vw,60px);height:1px;background:var(--yellow);opacity:.65;}
+    h1 {font-family:'Space Grotesk','DM Sans',sans-serif; font-weight:700; letter-spacing:-.065em; font-size:clamp(45px,7.6vw,116px);line-height:1.02;margin:22px 0 0;text-wrap:balance;}
+    h1 em {font-style:normal;color:var(--yellow);display:inline-block;position:relative;}
+    h1 em::after {content:'';position:absolute;left:2%;right:0;bottom:-5px;height:9px;border-bottom:3px wavy var(--yellow);opacity:.7;transform:rotate(-1deg)}
+    .sub {font-size:clamp(14px,1.8vw,23px);line-height:1.45;color:#d8ebe1;margin:22px auto 0;max-width:720px;}
+    .countdown {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));max-width:1100px;margin:clamp(32px,5vw,72px) auto 0;gap:clamp(7px,1.7vw,24px);}
+    .digit {min-width:0;background:linear-gradient(155deg,rgba(255,255,255,.1),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.22);border-radius:clamp(13px,2vw,24px);padding:clamp(18px,3.3vw,41px) 5px clamp(13px,2vw,25px);box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 9px 28px rgba(0,0,0,.085);position:relative;}
+    .digit::before {content:'';height:5px;width:30%;background:var(--yellow);position:absolute;top:0;left:35%;border-radius:0 0 6px 6px;opacity:.8;}
+    .num {display:block;font-family:'Space Grotesk','DM Sans',monospace;font-weight:700;letter-spacing:-.095em;font-variant-numeric:tabular-nums;font-feature-settings:"tnum";font-size:clamp(46px,10.6vw,152px);line-height:1;text-indent:-.095em;text-shadow:0 3px 24px rgba(0,0,0,.2);}
+    .unit {display:block;margin-top:clamp(13px,2vw,24px);font-size:clamp(11px,1.2vw,16px);text-transform:uppercase;letter-spacing:.19em;font-weight:900;color:var(--muted);}
+    .clock-notice {color:#c9e0d6;font-size:clamp(12px,1.2vw,16px);margin:24px auto 0;line-height:1.6;}
+    .details {max-width:1100px; margin:0 auto;display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap;}
+    .pill {border:1px solid var(--line);border-radius:999px;display:inline-flex;gap:9px;align-items:center;justify-content:center;padding:11px 16px;background:rgba(8,38,35,.36);font-size:clamp(12px,1vw,14px);color:#e3f0e9;}
+    .pill strong {color:var(--yellow);font-weight:900;}
+    .calendar-note {font-size:clamp(11px,1.1vw,14px);color:#c1d8cb;margin:20px auto 0;max-width:740px;line-height:1.55;}
+    .calendar-note strong {color:#ffdf77;}
+    .footer {border-top:1px dashed rgba(255,255,255,.23);padding-top:22px;display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap;}
+    .quote {font-size:clamp(13px,1.1vw,16px);color:#d9e9df;font-weight:700;max-width:570px;line-height:1.5;}
+    .quote strong {color:var(--yellow);}
+    .actions {display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
+    .btn {border:1px solid rgba(255,255,255,.29);border-radius:12px;padding:12px 16px;background:rgba(5,27,25,.24);color:var(--chalk);cursor:pointer;font-size:13px;font-weight:900;transition:transform .15s,background .15s;}
+    .btn:hover {background:rgba(255,255,255,.13);transform:translateY(-2px);}
+    .btn:focus-visible, .close:focus-visible, input:focus-visible{outline:3px solid var(--yellow);outline-offset:3px;}
+    .btn.primary {background:var(--yellow);border-color:var(--yellow);color:#163b31;}
+    .btn.primary:hover {background:#ffe99d;}
+    .doodle {position:absolute;pointer-events:none;user-select:none;z-index:0;opacity:.8;}
+    .doodle svg {height:100%;width:100%;stroke-linecap:round;stroke-linejoin:round;}
+    .doodle-1 {width:150px;height:135px;top:14%;left:3%;transform:rotate(-12deg);opacity:.49;}
+    .doodle-2 {width:150px;height:155px;top:14%;right:3%;transform:rotate(12deg);opacity:.6;}
+    .doodle-3 {width:170px;height:120px;bottom:18%;left:2%;transform:rotate(-15deg);opacity:.48;}
+    .doodle-4 {width:160px;height:135px;bottom:18%;right:2%;transform:rotate(6deg);opacity:.46;}
+    .sticky {position:absolute; z-index:2; background:#ffe8a2;color:#344137;padding:12px 16px;box-shadow:1px 8px 12px #0002;transform:rotate(-7deg);font-weight:900;line-height:1.2;font-size:clamp(11px,1vw,15px);border-radius:2px;max-width:190px;}
+    .sticky::before{content:'';position:absolute;width:40px;height:12px;top:-8px;left:calc(50% - 20px);background:#d8e9e788;transform:rotate(7deg);}
+    .sticky.one{top:27%;left:2%;}
+    .sticky.two{top:29%;right:1%;transform:rotate(7deg);background:#ffc5af;}
+    .modal-backdrop{position:fixed;inset:0;z-index:30;background:rgba(0,0,0,.7);display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(6px);}
+    .modal-backdrop[hidden]{display:none;}
+    .modal{width:min(100%,460px);border-radius:23px;padding:30px;background:#f8f7e9;color:#173e35;box-shadow:0 28px 80px #0007;position:relative;}
+    .modal h2{font-family:'Space Grotesk',sans-serif;margin:0 28px 12px 0;font-size:28px;letter-spacing:-.06em;}
+    .modal p{line-height:1.55;color:#47655b;font-size:14px;}
+    .modal label{display:block;font-weight:900;margin:25px 0 8px;}
+    .modal input{background:white;border:2px solid #afc1b7;border-radius:10px;padding:12px;font-size:20px;width:100%;color:#173e35;}
+    .modal .btn{margin-top:20px;width:100%;}
+    .modal .close{position:absolute;right:15px;top:12px;background:transparent;border:0;font-size:28px;cursor:pointer;color:#173e35;}
+    .toast{position:fixed;z-index:50;bottom:26px;left:50%;transform:translate(-50%,25px);border-radius:18px;padding:17px 23px;max-width:calc(100vw - 28px);text-align:center;box-shadow:0 12px 50px #0006;background:#ffdf77;color:#153e32;font-weight:900;font-size:clamp(14px,1.4vw,19px);opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;}
+    .toast.show{opacity:1;transform:translate(-50%,0);}
+    .confetti{position:fixed;width:10px;height:16px;pointer-events:none;z-index:40;animation:fall linear forwards;top:-25px;}
+    @keyframes fall {to{transform:translate(var(--x),105vh) rotate(var(--r));opacity:0;}}
+    .finished .hero h1 em{color:#ffdf77;}
+    @media(max-width:1000px){.sticky{display:none}.doodle{opacity:.18}.digit{padding-top:24px}}
+    @media(max-width:600px){.frame{padding:6px}.board{border-width:7px;border-radius:12px;min-height:calc(100svh - 12px)}.inner{min-height:calc(100svh - 26px);padding:20px 13px 24px}.top{justify-content:center}.logo{font-size:12px;letter-spacing:.09em}.logo-symbol{width:39px;height:39px;font-size:21px}.tag{font-size:10px;padding:8px 11px}.hero{padding:45px 0 42px}.eyebrow{letter-spacing:.13em;font-size:10px;gap:7px}h1{font-size:clamp(39px,10vw,61px);margin-top:20px}h1 em::after{height:5px}.sub{font-size:15px;margin-top:18px}.countdown{gap:6px;margin-top:35px}.digit{border-radius:11px;padding:20px 1px 15px}.num{font-size:clamp(42px,12vw,71px)}.unit{font-size:9px;letter-spacing:.08em;margin-top:10px}.clock-notice{font-size:12px}.details{gap:7px}.pill{padding:9px 11px;font-size:12px}.footer{justify-content:center;text-align:center;gap:18px}.actions{justify-content:center}.btn{padding:11px 13px;font-size:12px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}}
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <main class="board" id="board">
+      <div class="doodle doodle-1" aria-hidden="true"><svg viewBox="0 0 150 135" fill="none" stroke="#f7edd2" stroke-width="3"><path d="M20 42q32-26 60-8l-17 21 28 15-20 35-35-17-12 13-11-17 23-44"/><path d="M84 22l36 11M95 49l39 15M103 77l29 22"/></svg></div>
+      <div class="doodle doodle-2" aria-hidden="true"><svg viewBox="0 0 150 155" fill="none" stroke="#ffe09c" stroke-width="3"><path d="M39 27h57l10 107H31L39 27zM45 19h47M51 48h41M60 72h20M56 110h25"/><path d="M118 51q30 24-3 50M16 22l7-9m99 2l12 8"/></svg></div>
+      <div class="doodle doodle-3" aria-hidden="true"><svg viewBox="0 0 170 120" fill="none" stroke="#ddf7eb" stroke-width="3"><path d="M18 75q40-42 84-12t49-18M45 38l11 12m-21 5l16 4"/><path d="M107 17l8 19 20 1-15 15 5 20-18-9-18 10 4-21-15-14 21-3z"/></svg></div>
+      <div class="doodle doodle-4" aria-hidden="true"><svg viewBox="0 0 160 135" fill="none" stroke="#fadcb7" stroke-width="3"><path d="M27 32h80v62H27zM20 23h94v80H20zM44 14v18M91 14v18M42 54h52M44 75h25M126 32l13-8M132 54h16M127 74l12 11"/><path d="M96 106l12 10 23-29"/></svg></div>
+      <div class="sticky one" aria-hidden="true">“É só uma lembrancinha!”<br><small>— 30 cartões com glitter</small></div>
+      <div class="sticky two" aria-hidden="true">GLITTER:<br>até na alma ✨</div>
+
+      <div class="inner">
+        <header class="top">
+          <div class="logo"><span class="logo-symbol" aria-hidden="true">☕</span><span>Departamento de<br>Sobrevivência Docente</span></div>
+          <div class="tag">Santos · Educação Infantil 2026</div>
+        </header>
+
+        <section class="hero" aria-label="Contagem regressiva para o fim das aulas na Educação Infantil de Santos">
+          <div class="eyebrow">Central de resistência pedagógica · Santos</div>
+          <h1 id="headline">Operação:<br><em>FÉRIAS!</em></h1>
+          <p class="sub" id="subtitle">Cada segundo nos aproxima do último “PROFÊÊÊ!”. <br>Força, equipe da Educação Infantil! 🫡</p>
+          <div class="countdown" role="timer" aria-label="Tempo restante até o fim dos dias letivos">
+            <div class="digit"><span class="num" id="days">--</span><span class="unit">dias</span></div>
+            <div class="digit"><span class="num" id="hours">--</span><span class="unit">horas</span></div>
+            <div class="digit"><span class="num" id="minutes">--</span><span class="unit">minutos</span></div>
+            <div class="digit"><span class="num" id="seconds">--</span><span class="unit">segundos</span></div>
+          </div>
+          <p class="clock-notice" id="clockNotice">Contando até <strong>17 de dezembro de 2026, às 17h</strong> · Horário de Brasília</p>
+          <div class="details">
+            <span class="pill" title="Contagem de segunda a sexta até 17/12, excluindo 20/11; inclui hoje antes do horário do último sinal.">🧸 Dias letivos restantes: <strong id="schoolDays">--</strong></span>
+            <span class="pill">☕ Cafés necessários: <strong>indeterminados</strong></span>
+          </div>
+          <p class="calendar-note">📌 Segundo o calendário da Educação Infantil de Santos, o 3º trimestre termina em 17/12. <strong>18/12 é organização/planejamento</strong> — não um dia letivo.</p>
+        </section>
+
+        <footer class="footer">
+          <div class="quote" id="quote">📢 <strong>AVISO:</strong> A paz só chega depois do último “profê, olha aqui!”.</div>
+          <div class="actions">
+            <button type="button" class="btn" id="settingsBtn">⚙ Ajustar hora do último sinal</button>
+            <button type="button" class="btn primary" id="boostBtn">🎉 Preciso de motivação!</button>
+          </div>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="settingsModal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+      <button type="button" class="close" id="closeModal" aria-label="Fechar">×</button>
+      <h2 id="settingsTitle">Quando toca o último sinal? 🔔</h2>
+      <p>O calendário da Educação Infantil de Santos encerra o <strong>3º trimestre em 17/12/2026</strong>. O dia <strong>18/12</strong> aparece como organização/planejamento, não como dia letivo. Ajuste a hora do último sinal da sua unidade.</p>
+      <label for="endTime">Horário de encerramento (Brasília)</label>
+      <input type="time" id="endTime" value="17:00" required />
+      <button type="button" class="btn primary" id="saveTime">Salvar e voltar à contagem</button>
+      <p style="font-size:12px;margin-bottom:0">A escolha fica salva neste navegador. A contagem principal mostra tempo corrido, inclusive fins de semana.</p>
+    </div>
+  </div>
+  <div class="toast" role="status" aria-live="polite" id="toast"></div>
+
+  <script>
+    (() => {
+      'use strict';
+      const YEAR = 2026, MONTH = 12, DAY = 17;
+      const STORAGE_KEY = 'ferias-santos-infantil-2026-hora';
+      const holidays = new Set(['2026-11-20']); // Dia não letivo (Consciência Negra), conforme o calendário.
+      const $ = id => document.getElementById(id);
+      const daysEl = $('days'), hoursEl = $('hours'), minutesEl = $('minutes'), secondsEl = $('seconds');
+      const brParts = new Intl.DateTimeFormat('en-US', {timeZone:'America/Sao_Paulo',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'});
+      const motivational = [
+        'Se sobrevivi à última roda de conversa do ano, sobrevivo a qualquer coisa. 💪',
+        'O recesso vem aí. O grupo da escola que lute! 📱',
+        'Faltam menos dias para o último sinal do que canetinhas sem tampa na sala. 🖍️',
+        'Isso não é contagem regressiva: é planejamento pedagógico do descanso! 😎',
+        'Paciência: 2%. Afeto: 100%. Café: precisamos de mais. ☕',
+        'O último “profêêê!” de 2026 está oficialmente no horizonte. 🎊',
+        'Em breve, ninguém vai te chamar de “profê” 78 vezes por minuto. 🚻',
+        'Respira. Acolhe. Conta história. Canta. Repete. Último sinal! 🏖️'
+      ];
+      let selectedHour = loadTime();
+      let celebrated = false;
+      let toastTimer;
+      let quoteIndex = 0;
+
+      function loadTime(){
+        try {const v = localStorage.getItem(STORAGE_KEY); return /^([01]\d|2[0-3]):[0-5]\d$/.test(v || '') ? v : '17:00'; }
+        catch{return '18:00';}
+      }
+      function getDeadline(){
+        // São Paulo não utiliza horário de verão em 2026: UTC-03:00.
+        return new Date(`${YEAR}-${String(MONTH).padStart(2,'0')}-${String(DAY).padStart(2,'0')}T${selectedHour}:00-03:00`).getTime();
+      }
+      function getSaoPauloNow(date){
+        const p = {};
+        for(const part of brParts.formatToParts(date)) if(part.type !== 'literal') p[part.type] = +part.value;
+        return p;
+      }
+      function countSchoolDays(now){
+        if(now.getTime() >= getDeadline()) return 0;
+        const local = getSaoPauloNow(now);
+        // Conta hoje apenas antes do horário de encerramento configurado.
+        const [cutHour,cutMinute] = selectedHour.split(':').map(Number);
+        const beginsTomorrow = local.hour > cutHour || (local.hour === cutHour && local.minute >= cutMinute);
+        let cursor = Date.UTC(local.year, local.month-1, local.day+(beginsTomorrow?1:0),12);
+        const end = Date.UTC(YEAR,MONTH-1,DAY,12);
+        let count=0;
+        while(cursor<=end){
+          const d = new Date(cursor); const dow=d.getUTCDay();
+          const iso=d.toISOString().slice(0,10);
+          if(dow!==0 && dow!==6 && !holidays.has(iso)) count++;
+          cursor += 86400000;
+        }
+        return count;
+      }
+      function tick(){
+        const now = new Date();
+        const diff = Math.max(0, getDeadline() - now.getTime());
+        const total = Math.floor(diff/1000);
+        daysEl.textContent = String(Math.floor(total/86400)).padStart(2,'0');
+        hoursEl.textContent = String(Math.floor(total%86400/3600)).padStart(2,'0');
+        minutesEl.textContent = String(Math.floor(total%3600/60)).padStart(2,'0');
+        secondsEl.textContent = String(total%60).padStart(2,'0');
+        $('schoolDays').textContent = countSchoolDays(now);
+        const [h,m] = selectedHour.split(':');
+        $('clockNotice').innerHTML = `Contando até <strong>17 de dezembro de 2026, às ${h}h${m==='00'?'':m}</strong> · Horário de Brasília`;
+        if(diff===0){
+          $('board').classList.add('finished');
+          $('headline').innerHTML='FINALMENTE:<br><em>FÉRIAS!</em> 🥳';
+          $('subtitle').innerHTML='Último dia letivo encerrado! 🏝️ Atenção: 18/12 está marcado como organização/planejamento.';
+          $('quote').innerHTML='📢 <strong>COMUNICADO:</strong> Os lápis de cor estão oficialmente descansando.';
+          if(!celebrated){celebrated=true;confetti(75);}
+        } else if(celebrated){
+          celebrated=false; $('board').classList.remove('finished');
+          $('headline').innerHTML='Operação:<br><em>FÉRIAS!</em>';
+          $('subtitle').innerHTML='Cada segundo nos aproxima do último “PROFÊÊÊ!”. <br>Força, equipe da Educação Infantil! 🫡';
+        }
+      }
+      function showToast(msg){
+        const t=$('toast'); t.textContent=msg; t.classList.add('show');
+        clearTimeout(toastTimer); toastTimer=setTimeout(()=>t.classList.remove('show'),3400);
+      }
+      function confetti(n=45){
+        const palette=['#ffdf77','#ffc4ad','#a8dbe8','#fff','#75d2a8'];
+        for(let i=0;i<n;i++){
+          const el=document.createElement('i');el.className='confetti';
+          el.style.left=(Math.random()*100)+'vw';
+          el.style.background=palette[i%palette.length];
+          el.style.borderRadius=(Math.random()>.6?'50%':'2px');
+          el.style.setProperty('--x',((Math.random()-.5)*350)+'px');
+          el.style.setProperty('--r',(Math.random()*1600-800)+'deg');
+          el.style.animationDuration=(2+Math.random()*2.5)+'s';
+          document.body.appendChild(el);
+          el.addEventListener('animationend',()=>el.remove(),{once:true});
+        }
+      }
+      $('boostBtn').addEventListener('click',()=>{
+        const message=motivational[quoteIndex++ % motivational.length];
+        $('quote').innerHTML='📢 <strong>INJEÇÃO DE ÂNIMO:</strong> '+message;
+        showToast(message);confetti(38);
+      });
+      const modal=$('settingsModal');
+      function close(){modal.hidden=true; $('settingsBtn').focus();}
+      $('settingsBtn').addEventListener('click',()=>{ $('endTime').value=selectedHour; modal.hidden=false; $('endTime').focus(); });
+      $('closeModal').addEventListener('click',close);
+      modal.addEventListener('click',e=>{if(e.target===modal)close();});
+      document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!modal.hidden)close();});
+      $('saveTime').addEventListener('click',()=>{
+        const chosen=$('endTime').value;
+        if(!/^([01]\d|2[0-3]):[0-5]\d$/.test(chosen))return;
+        selectedHour=chosen;
+        try{localStorage.setItem(STORAGE_KEY,chosen);}catch{}
+        close();tick();showToast('Novo horário do último sinal registrado! 🔔');
+      });
+      tick();setInterval(tick,1000);
+    })();
+  </script>
+</body>
+</html>
